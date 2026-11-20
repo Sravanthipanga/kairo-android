@@ -16,7 +16,8 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 - [x] Medications: add and edit medications, schedules, today's doses, dose log
 - [x] Reminders: exact alarms with "Taken" and "Snooze" notification actions
 - [x] Adaptive timing: suggests moving a reminder when you consistently take a dose at a different time
-- [ ] Health Connect, home-screen widget, biometric lock
+- [x] App lock: fingerprint, face or screen lock, plus private notifications
+- [ ] Home-screen widget and Health Connect insights
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
 - [ ] Tests, screenshots, Play Store release
 
@@ -36,9 +37,18 @@ Kairo compares each reminder with when you actually took the dose over the last 
 
 The logic is a pure Kotlin function in `:core:model` with its own unit tests.
 
+## Privacy
+
+Medication history is health data, so Kairo treats it that way:
+
+- **On-device only.** Data is stored locally and excluded from cloud backups and device transfers.
+- **App lock (optional).** Requires a fingerprint, face or the device screen lock. It re-locks after 30 seconds in the background, and the device PIN always works as a fallback.
+- **No peeking.** With app lock on, Kairo is hidden from screenshots and the recent-apps preview.
+- **Private notifications.** On a locked phone, reminders say "Time for your medication" without naming it.
+
 ## Tech stack
 
-Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · JUnit, Turbine · GitHub Actions
+Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · BiometricPrompt · DataStore · JUnit, Turbine · GitHub Actions
 
 ## Architecture
 
@@ -48,6 +58,8 @@ Kairo is split into modules so features stay independent and the domain logic is
 graph TD
     app --> feature_today[":feature:today"]
     app --> feature_medications[":feature:medications"]
+    app --> feature_settings[":feature:settings"]
+    feature_settings --> core_data
     app --> core_designsystem[":core:designsystem"]
     app --> core_data[":core:data"]
     app --> core_reminders[":core:reminders"]
@@ -64,8 +76,9 @@ graph TD
 
 | Module | Responsibility |
 |---|---|
-| `:app` | Application, activity, bottom navigation, navigation host, Hilt entry point |
+| `:app` | Application, activity, bottom navigation, navigation host, app lock, Hilt entry point |
 | `:feature:today` | Today's doses: mark taken or skipped, undo, overdue state, daily progress, timing suggestions |
+| `:feature:settings` | Settings: app lock switch and privacy information |
 | `:feature:medications` | Medication list and the add/edit editor with validation and time pickers |
 | `:core:data` | Repositories. The local database is the single source of truth (offline-first) |
 | `:core:database` | Room database, DAOs, entities, exported schemas and auto-migrations |
