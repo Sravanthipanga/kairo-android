@@ -28,6 +28,7 @@ android {
 dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
+    implementation(projects.core.reminders)
     implementation(projects.feature.medications)
     implementation(projects.feature.today)
 

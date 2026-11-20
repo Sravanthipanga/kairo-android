@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_reminders_channel_name">Medication reminders</string>
+    <string name="core_reminders_channel_description">Reminds you when a dose is due</string>
+    <string name="core_reminders_title">Time for %1$s</string>
+    <string name="core_reminders_action_taken">Taken</string>
+    <string name="core_reminders_action_snooze">Snooze 10 min</string>
+</resources>
