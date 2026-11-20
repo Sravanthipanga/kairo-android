@@ -18,4 +18,15 @@
         <item quantity="one">%1$d of %2$d dose taken</item>
         <item quantity="other">%1$d of %2$d doses taken</item>
     </plurals>
+    <string name="feature_today_suggestion_title">Move the %1$s reminder to %2$s?</string>
+    <plurals name="feature_today_suggestion_late">
+        <item quantity="one">You usually take it about %1$d minutes after the %2$s reminder, based on your last %3$d dose.</item>
+        <item quantity="other">You usually take it about %1$d minutes after the %2$s reminder, based on your last %3$d doses.</item>
+    </plurals>
+    <plurals name="feature_today_suggestion_early">
+        <item quantity="one">You usually take it about %1$d minutes before the %2$s reminder, based on your last %3$d dose.</item>
+        <item quantity="other">You usually take it about %1$d minutes before the %2$s reminder, based on your last %3$d doses.</item>
+    </plurals>
+    <string name="feature_today_suggestion_accept">Move to %1$s</string>
+    <string name="feature_today_suggestion_dismiss">Not now</string>
 </resources>

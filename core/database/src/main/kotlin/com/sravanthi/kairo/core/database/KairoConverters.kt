@@ -16,6 +16,12 @@ internal class KairoConverters {
         if (value.isBlank()) emptyList() else value.split(SEPARATOR).map(LocalTime::parse)
 
     @TypeConverter
+    fun localTimeToString(time: LocalTime?): String? = time?.toString()
+
+    @TypeConverter
+    fun stringToLocalTime(value: String?): LocalTime? = value?.let(LocalTime::parse)
+
+    @TypeConverter
     fun instantToEpochMillis(instant: Instant?): Long? = instant?.toEpochMilli()
 
     @TypeConverter

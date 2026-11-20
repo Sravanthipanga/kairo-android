@@ -4,6 +4,8 @@ import com.sravanthi.kairo.core.data.repository.DoseRepository
 import com.sravanthi.kairo.core.data.repository.MedicationRepository
 import com.sravanthi.kairo.core.data.repository.OfflineFirstDoseRepository
 import com.sravanthi.kairo.core.data.repository.OfflineFirstMedicationRepository
+import com.sravanthi.kairo.core.data.repository.OfflineFirstSuggestionDismissalRepository
+import com.sravanthi.kairo.core.data.repository.SuggestionDismissalRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -24,6 +26,11 @@ internal abstract class DataModule {
     abstract fun bindDoseRepository(
         repository: OfflineFirstDoseRepository,
     ): DoseRepository
+
+    @Binds
+    abstract fun bindSuggestionDismissalRepository(
+        repository: OfflineFirstSuggestionDismissalRepository,
+    ): SuggestionDismissalRepository
 
     companion object {
         /** The device clock, injected so time-dependent logic can be tested with a fixed clock. */

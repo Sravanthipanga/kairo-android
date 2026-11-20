@@ -24,4 +24,7 @@ internal object DatabaseModule {
 
     @Provides
     fun provideDoseEventDao(database: KairoDatabase) = database.doseEventDao()
+
+    @Provides
+    fun provideSuggestionDismissalDao(database: KairoDatabase) = database.suggestionDismissalDao()
 }
