@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_medications_title">Medications</string>
+    <string name="feature_medications_empty_title">No medications yet</string>
+    <string name="feature_medications_empty_body">Add your first medication and Kairo will remind you at the right moment.</string>
+    <string name="feature_medications_next_dose">Next dose at %1$s</string>
+</resources>
