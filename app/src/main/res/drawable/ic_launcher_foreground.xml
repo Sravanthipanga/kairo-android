@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Clock ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4"
+        android:pathData="M54,30a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z" />
+    <!-- Minute hand -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="4"
+        android:pathData="M54,54L54,37" />
+    <!-- Capsule hour hand, tilted toward "the right moment" -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="-45">
+        <path
+            android:fillColor="@color/kairo_amber"
+            android:pathData="M51,54L57,54L57,64A3,3 0,0 1,51 64Z" />
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M51,54L51,44A3,3 0,0 1,57 44L57,54Z" />
+    </group>
+    <!-- Hub -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,51a3,3 0,1 1,0 6a3,3 0,1 1,0 -6z" />
+</vector>
