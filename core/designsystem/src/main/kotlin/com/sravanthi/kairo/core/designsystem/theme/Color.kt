@@ -24,3 +24,23 @@ internal val NeutralVariant30 = Color(0xFF3F4946)
 internal val NeutralVariant50 = Color(0xFF6F7976)
 internal val NeutralVariant80 = Color(0xFFBEC9C5)
 internal val NeutralVariant90 = Color(0xFFDAE5E1)
+
+// Secondary: a muted teal for tonal buttons and supporting surfaces.
+internal val Sage10 = Color(0xFF05201C)
+internal val Sage20 = Color(0xFF1C3531)
+internal val Sage30 = Color(0xFF334B47)
+internal val Sage40 = Color(0xFF4A635F)
+internal val Sage80 = Color(0xFFB1CCC6)
+internal val Sage90 = Color(0xFFCCE8E2)
+
+// Surface containers, tinted toward teal (not Material's default purple), lightest to darkest.
+internal val LightSurfaceContainerLowest = Color(0xFFFFFFFF)
+internal val LightSurfaceContainerLow = Color(0xFFF4FBF8)
+internal val LightSurfaceContainer = Color(0xFFEEF5F2)
+internal val LightSurfaceContainerHigh = Color(0xFFE9EFEC)
+internal val LightSurfaceContainerHighest = Color(0xFFE3EAE7)
+internal val DarkSurfaceContainerLowest = Color(0xFF0B0F0E)
+internal val DarkSurfaceContainerLow = Color(0xFF171D1B)
+internal val DarkSurfaceContainer = Color(0xFF1B211F)
+internal val DarkSurfaceContainerHigh = Color(0xFF252B2A)
+internal val DarkSurfaceContainerHighest = Color(0xFF303634)

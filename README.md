@@ -8,7 +8,12 @@ Kairo is an offline-first Android medication companion built with Kotlin and Jet
 
 The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns when you actually take your doses and nudges you at the right moment instead of at a fixed alarm time.
 
-> 🚧 Under active development. See the roadmap below.
+<p align="center">
+  <img src="docs/screenshots/today.png" width="200" alt="Today: doses with Take and Skip, an overdue dose and an adaptive timing suggestion" />
+  <img src="docs/screenshots/insights.png" width="200" alt="Insights: 7-day adherence with steps and sleep" />
+  <img src="docs/screenshots/medication_editor.png" width="200" alt="Medication editor with reminder times" />
+  <img src="docs/screenshots/today_dark.png" width="200" alt="Today screen in dark theme" />
+</p>
 
 ## Roadmap
 
@@ -21,7 +26,8 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 - [x] Insights: 7-day dose adherence, with steps and sleep from Health Connect
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
 - [x] Release setup: signed builds in CI, privacy policy, Play Store listing
-- [ ] Screenshots and Play Store release
+- [x] Screenshots generated from code (Roborazzi)
+- [ ] Play Store release
 
 ## How adaptive timing works
 
@@ -109,7 +115,10 @@ Requires JDK 17 and the Android SDK (compiles against API 36, targets API 35).
 ./gradlew assembleDebug        # build the app
 ./gradlew testDebugUnitTest    # run unit tests
 ./gradlew lintDebug            # run Android lint
+./gradlew recordRoborazziDebug # regenerate the screenshots in docs/screenshots
 ```
+
+The screenshots are rendered from the real Compose screens on the JVM with Robolectric and Roborazzi, so they always match the code. During normal test runs the same tests run as rendering checks without writing files.
 
 Or open the project in Android Studio and run the `app` configuration.
 
