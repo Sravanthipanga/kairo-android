@@ -49,6 +49,7 @@ import com.sravanthi.kairo.core.model.DoseEvent
 import com.sravanthi.kairo.core.model.DoseStatus
 import com.sravanthi.kairo.core.model.Medication
 import com.sravanthi.kairo.core.model.ScheduledDose
+import com.sravanthi.kairo.core.model.TimingSuggestion
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
@@ -67,6 +68,8 @@ internal fun TodayRoute(
         onTaken = viewModel::markTaken,
         onSkipped = viewModel::markSkipped,
         onUndo = viewModel::undo,
+        onAcceptSuggestion = viewModel::acceptSuggestion,
+        onDismissSuggestion = viewModel::dismissSuggestion,
     )
 }
 
@@ -78,6 +81,8 @@ internal fun TodayScreen(
     onTaken: (ScheduledDose) -> Unit,
     onSkipped: (ScheduledDose) -> Unit,
     onUndo: (ScheduledDose) -> Unit,
+    onAcceptSuggestion: (TimingSuggestion) -> Unit = {},
+    onDismissSuggestion: (TimingSuggestion) -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
@@ -93,7 +98,8 @@ internal fun TodayScreen(
             when (uiState) {
                 TodayUiState.Loading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                 TodayUiState.NoMedications -> NoMedications(onAddMedication, Modifier.align(Alignment.Center))
-                is TodayUiState.Success -> DoseList(uiState, onTaken, onSkipped, onUndo)
+                is TodayUiState.Success ->
+                    DoseList(uiState, onTaken, onSkipped, onUndo, onAcceptSuggestion, onDismissSuggestion)
             }
         }
     }
@@ -136,6 +142,8 @@ private fun DoseList(
     onTaken: (ScheduledDose) -> Unit,
     onSkipped: (ScheduledDose) -> Unit,
     onUndo: (ScheduledDose) -> Unit,
+    onAcceptSuggestion: (TimingSuggestion) -> Unit,
+    onDismissSuggestion: (TimingSuggestion) -> Unit,
 ) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
@@ -143,6 +151,13 @@ private fun DoseList(
     ) {
         item { ReminderPermissionBanner() }
         item { ProgressHeader(state.date, state.progress) }
+        items(state.suggestions, key = { "suggestion-${it.medication.id}@${it.currentTime}" }) { suggestion ->
+            TimingSuggestionCard(
+                suggestion = suggestion,
+                onAccept = { onAcceptSuggestion(suggestion) },
+                onDismiss = { onDismissSuggestion(suggestion) },
+            )
+        }
         items(state.doses, key = { "${it.dose.medication.id}@${it.dose.scheduledAt}" }) { item ->
             DoseCard(item, onTaken, onSkipped, onUndo)
         }
