@@ -45,6 +45,10 @@ gradlePlugin {
             id = "kairo.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("androidScreenshots") {
+            id = "kairo.android.screenshots"
+            implementationClass = "AndroidScreenshotsConventionPlugin"
+        }
         register("hilt") {
             id = "kairo.hilt"
             implementationClass = "HiltConventionPlugin"

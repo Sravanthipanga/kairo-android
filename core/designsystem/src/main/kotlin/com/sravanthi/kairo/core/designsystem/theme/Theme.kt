@@ -16,6 +16,10 @@ private val LightColors = lightColorScheme(
     onPrimary = Neutral99,
     primaryContainer = Teal90,
     onPrimaryContainer = Teal10,
+    secondary = Sage40,
+    onSecondary = Neutral99,
+    secondaryContainer = Sage90,
+    onSecondaryContainer = Sage10,
     tertiary = Amber40,
     onTertiary = Neutral99,
     tertiaryContainer = Amber90,
@@ -27,6 +31,11 @@ private val LightColors = lightColorScheme(
     surfaceVariant = NeutralVariant90,
     onSurfaceVariant = NeutralVariant30,
     outline = NeutralVariant50,
+    surfaceContainerLowest = LightSurfaceContainerLowest,
+    surfaceContainerLow = LightSurfaceContainerLow,
+    surfaceContainer = LightSurfaceContainer,
+    surfaceContainerHigh = LightSurfaceContainerHigh,
+    surfaceContainerHighest = LightSurfaceContainerHighest,
 )
 
 private val DarkColors = darkColorScheme(
@@ -34,6 +43,10 @@ private val DarkColors = darkColorScheme(
     onPrimary = Teal20,
     primaryContainer = Teal30,
     onPrimaryContainer = Teal90,
+    secondary = Sage80,
+    onSecondary = Sage20,
+    secondaryContainer = Sage30,
+    onSecondaryContainer = Sage90,
     tertiary = Amber80,
     onTertiary = Amber20,
     tertiaryContainer = Amber30,
@@ -45,6 +58,11 @@ private val DarkColors = darkColorScheme(
     surfaceVariant = NeutralVariant30,
     onSurfaceVariant = NeutralVariant80,
     outline = NeutralVariant50,
+    surfaceContainerLowest = DarkSurfaceContainerLowest,
+    surfaceContainerLow = DarkSurfaceContainerLow,
+    surfaceContainer = DarkSurfaceContainer,
+    surfaceContainerHigh = DarkSurfaceContainerHigh,
+    surfaceContainerHighest = DarkSurfaceContainerHighest,
 )
 
 /**
