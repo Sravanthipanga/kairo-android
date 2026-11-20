@@ -25,6 +25,11 @@ internal class AndroidReminderNotifier @Inject constructor(
         ensureChannel(context)
 
         val body = listOfNotNull(medication.dosage, medication.instructions).joinToString(" · ")
+        // On a locked phone, show only a generic reminder: medication names are health data.
+        val lockScreenVersion = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.core_reminders_ic_notification)
+            .setContentTitle(context.getString(R.string.core_reminders_public_title))
+            .build()
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.core_reminders_ic_notification)
             .setContentTitle(context.getString(R.string.core_reminders_title, medication.name))
@@ -34,6 +39,8 @@ internal class AndroidReminderNotifier @Inject constructor(
             .setWhen(scheduledAt.toEpochMilli())
             .setShowWhen(true)
             .setAutoCancel(true)
+            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
+            .setPublicVersion(lockScreenVersion)
             .setContentIntent(ReminderIntents.openApp(context))
             .addAction(
                 0,

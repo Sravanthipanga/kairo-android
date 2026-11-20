@@ -5,4 +5,5 @@
     <string name="core_reminders_title">Time for %1$s</string>
     <string name="core_reminders_action_taken">Taken</string>
     <string name="core_reminders_action_snooze">Snooze 10 min</string>
+    <string name="core_reminders_public_title">Time for your medication</string>
 </resources>

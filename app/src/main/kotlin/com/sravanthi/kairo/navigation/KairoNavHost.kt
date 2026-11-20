@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import com.sravanthi.kairo.feature.medications.navigation.medicationEditorScreen
 import com.sravanthi.kairo.feature.medications.navigation.medicationsScreen
 import com.sravanthi.kairo.feature.medications.navigation.navigateToMedicationEditor
+import com.sravanthi.kairo.feature.settings.navigation.settingsScreen
 import com.sravanthi.kairo.feature.today.navigation.TODAY_ROUTE
 import com.sravanthi.kairo.feature.today.navigation.todayScreen
 
@@ -26,5 +27,6 @@ fun KairoNavHost(
             onMedicationClick = { id -> navController.navigateToMedicationEditor(id) },
         )
         medicationEditorScreen(onDone = { navController.popBackStack() })
+        settingsScreen()
     }
 }

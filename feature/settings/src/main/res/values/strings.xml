@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_settings_title">Settings</string>
+    <string name="feature_settings_privacy">Privacy</string>
+    <string name="feature_settings_app_lock">App lock</string>
+    <string name="feature_settings_app_lock_description">Require your fingerprint, face or screen lock to open Kairo. Also hides Kairo from screenshots and the recent apps preview.</string>
+    <string name="feature_settings_app_lock_unavailable">Set up a screen lock in your phone\'s settings to use app lock.</string>
+    <string name="feature_settings_on_device">Your data stays on this phone</string>
+    <string name="feature_settings_on_device_description">Medications and dose history are stored only on this device and are excluded from cloud backups.</string>
+</resources>

@@ -3,4 +3,10 @@
     <string name="app_name">Kairo</string>
     <string name="nav_today">Today</string>
     <string name="nav_medications">Medications</string>
+    <string name="nav_settings">Settings</string>
+    <string name="lock_title">Kairo is locked</string>
+    <string name="lock_body">Unlock with your fingerprint, face or screen lock to see your medications.</string>
+    <string name="lock_unlock">Unlock</string>
+    <string name="lock_prompt_title">Unlock Kairo</string>
+    <string name="lock_prompt_subtitle">Your medication list is protected</string>
 </resources>
