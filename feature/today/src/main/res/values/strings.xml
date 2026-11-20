@@ -4,11 +4,18 @@
     <string name="feature_today_empty_title">Nothing scheduled</string>
     <string name="feature_today_empty_body">Add a medication with reminder times and today\'s doses will appear here.</string>
     <string name="feature_today_add_medication">Add medication</string>
-    <string name="feature_today_progress">%1$d of %2$d doses taken</string>
     <string name="feature_today_take">Take</string>
     <string name="feature_today_skip">Skip</string>
     <string name="feature_today_undo">Undo</string>
     <string name="feature_today_taken_at">Taken %1$s</string>
     <string name="feature_today_skipped">Skipped</string>
     <string name="feature_today_overdue">Overdue</string>
+    <string name="feature_today_permission_notifications">Turn on notifications so Kairo can remind you when a dose is due.</string>
+    <string name="feature_today_permission_notifications_action">Turn on</string>
+    <string name="feature_today_permission_exact_alarms">Allow alarms and reminders so Kairo can remind you on time, even when your phone is idle.</string>
+    <string name="feature_today_permission_exact_alarms_action">Open settings</string>
+    <plurals name="feature_today_progress">
+        <item quantity="one">%1$d of %2$d dose taken</item>
+        <item quantity="other">%1$d of %2$d doses taken</item>
+    </plurals>
 </resources>

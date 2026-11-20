@@ -33,6 +33,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
@@ -140,6 +141,7 @@ private fun DoseList(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+        item { ReminderPermissionBanner() }
         item { ProgressHeader(state.date, state.progress) }
         items(state.doses, key = { "${it.dose.medication.id}@${it.dose.scheduledAt}" }) { item ->
             DoseCard(item, onTaken, onSkipped, onUndo)
@@ -149,7 +151,7 @@ private fun DoseList(
 
 @Composable
 private fun ProgressHeader(date: LocalDate, progress: DayProgress) {
-    val summary = stringResource(R.string.feature_today_progress, progress.taken, progress.total)
+    val summary = pluralStringResource(R.plurals.feature_today_progress, progress.total, progress.taken, progress.total)
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier

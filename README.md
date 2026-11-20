@@ -14,7 +14,7 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 
 - [x] Project skeleton: multi-module Gradle build, Compose, Hilt, Room, CI
 - [x] Medications: add and edit medications, schedules, today's doses, dose log
-- [ ] Reminders: exact alarms with "Taken" and "Snooze" notification actions
+- [x] Reminders: exact alarms with "Taken" and "Snooze" notification actions
 - [ ] Adaptive timing: reminders that shift toward when you actually take your doses
 - [ ] Health Connect, home-screen widget, biometric lock
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
@@ -22,7 +22,7 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 
 ## Tech stack
 
-Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · JUnit, Turbine · GitHub Actions
+Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · JUnit, Turbine · GitHub Actions
 
 ## Architecture
 
@@ -34,6 +34,9 @@ graph TD
     app --> feature_medications[":feature:medications"]
     app --> core_designsystem[":core:designsystem"]
     app --> core_data[":core:data"]
+    app --> core_reminders[":core:reminders"]
+    feature_today --> core_reminders
+    core_reminders --> core_data
     feature_today --> core_data
     feature_today --> core_designsystem
     feature_medications --> core_data
@@ -51,6 +54,7 @@ graph TD
 | `:core:data` | Repositories. The local database is the single source of truth (offline-first) |
 | `:core:database` | Room database, DAOs, entities, exported schemas and auto-migrations |
 | `:core:model` | Pure Kotlin domain models and logic (`Medication`, `DoseEvent`, daily schedule) |
+| `:core:reminders` | Exact alarms per reminder slot, notifications with Taken and Snooze, rescheduling after reboot or time-zone change |
 | `:core:designsystem` | Kairo's Material 3 theme and colours |
 | `:core:testing` | Shared test doubles (fake repositories) and a coroutine test rule |
 | `build-logic` | Gradle convention plugins shared by every module |
