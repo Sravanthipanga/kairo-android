@@ -18,7 +18,7 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 - [x] Adaptive timing: suggests moving a reminder when you consistently take a dose at a different time
 - [x] App lock: fingerprint, face or screen lock, plus private notifications
 - [x] Home-screen widget: next dose with a one-tap Taken button
-- [ ] Health Connect insights
+- [x] Insights: 7-day dose adherence, with steps and sleep from Health Connect
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
 - [ ] Tests, screenshots, Play Store release
 
@@ -46,11 +46,12 @@ Medication history is health data, so Kairo treats it that way:
 - **App lock (optional).** Requires a fingerprint, face or the device screen lock. It re-locks after 30 seconds in the background, and the device PIN always works as a fallback.
 - **No peeking.** With app lock on, Kairo is hidden from screenshots and the recent-apps preview.
 - **Private notifications.** On a locked phone, reminders say "Time for your medication" without naming it.
+- **Read-only health data.** Kairo reads only steps and sleep from Health Connect, never writes, and never sends them off the phone.
 - **Private widget.** With app lock on, the home-screen widget shows only the time of the next dose.
 
 ## Tech stack
 
-Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · BiometricPrompt · DataStore · Glance widgets · JUnit, Turbine · GitHub Actions
+Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · BiometricPrompt · DataStore · Glance widgets · Health Connect · JUnit, Turbine · GitHub Actions
 
 ## Architecture
 
@@ -62,6 +63,9 @@ graph TD
     app --> feature_medications[":feature:medications"]
     app --> feature_settings[":feature:settings"]
     app --> feature_widget[":feature:widget"]
+    app --> feature_insights[":feature:insights"]
+    feature_insights --> core_health[":core:health"]
+    feature_insights --> core_data
     feature_widget --> core_reminders
     feature_widget --> core_data
     feature_settings --> core_data
@@ -83,12 +87,14 @@ graph TD
 |---|---|
 | `:app` | Application, activity, bottom navigation, navigation host, app lock, Hilt entry point |
 | `:feature:today` | Today's doses: mark taken or skipped, undo, overdue state, daily progress, timing suggestions |
+| `:feature:insights` | Last 7 days: dose adherence per day, plus steps and sleep when Health Connect is connected |
 | `:feature:widget` | Glance home-screen widget: next dose, overdue state, Taken button, daily progress |
 | `:feature:settings` | Settings: app lock switch and privacy information |
 | `:feature:medications` | Medication list and the add/edit editor with validation and time pickers |
 | `:core:data` | Repositories. The local database is the single source of truth (offline-first) |
 | `:core:database` | Room database, DAOs, entities, exported schemas and auto-migrations |
 | `:core:model` | Pure Kotlin domain models and logic (`Medication`, `DoseEvent`, daily schedule, adaptive timing) |
+| `:core:health` | Read-only Health Connect access (steps and sleep), behind an interface for testing |
 | `:core:reminders` | Exact alarms per reminder slot, notifications with Taken and Snooze, rescheduling after reboot or time-zone change |
 | `:core:designsystem` | Kairo's Material 3 theme and colours |
 | `:core:testing` | Shared test doubles (fake repositories) and a coroutine test rule |
@@ -96,7 +102,7 @@ graph TD
 
 ## Build and run
 
-Requires JDK 17 and the Android SDK (API 35).
+Requires JDK 17 and the Android SDK (compiles against API 36, targets API 35).
 
 ```bash
 ./gradlew assembleDebug        # build the app
