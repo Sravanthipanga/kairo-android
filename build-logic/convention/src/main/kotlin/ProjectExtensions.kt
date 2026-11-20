@@ -17,7 +17,7 @@ internal fun VersionCatalog.lib(alias: String): Provider<MinimalExternalModuleDe
     findLibrary(alias).get()
 
 internal object KairoSdk {
-    const val COMPILE = 35
+    const val COMPILE = 36
     const val MIN = 26
     const val TARGET = 35
     val JAVA = JavaVersion.VERSION_17

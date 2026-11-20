@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.sravanthi.kairo.feature.insights.navigation.insightsScreen
 import com.sravanthi.kairo.feature.medications.navigation.medicationEditorScreen
 import com.sravanthi.kairo.feature.medications.navigation.medicationsScreen
 import com.sravanthi.kairo.feature.medications.navigation.navigateToMedicationEditor
@@ -27,6 +28,7 @@ fun KairoNavHost(
             onMedicationClick = { id -> navController.navigateToMedicationEditor(id) },
         )
         medicationEditorScreen(onDone = { navController.popBackStack() })
+        insightsScreen()
         settingsScreen()
     }
 }

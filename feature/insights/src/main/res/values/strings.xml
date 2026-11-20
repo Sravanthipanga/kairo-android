@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_insights_title">Insights</string>
+    <string name="feature_insights_empty">Add a medication to see your weekly insights.</string>
+    <string name="feature_insights_this_week">Last 7 days</string>
+    <string name="feature_insights_adherence">%1$d%% of doses taken</string>
+    <string name="feature_insights_no_doses">No doses were due</string>
+    <string name="feature_insights_avg_steps">Avg %1$s steps</string>
+    <string name="feature_insights_avg_sleep">Avg %1$s sleep</string>
+    <string name="feature_insights_no_activity">No steps or sleep recorded yet</string>
+    <string name="feature_insights_daily">Day by day</string>
+    <string name="feature_insights_doses">%1$d of %2$d</string>
+    <string name="feature_insights_steps">%1$s steps</string>
+    <string name="feature_insights_sleep">%1$s sleep</string>
+    <string name="feature_insights_connect_body">Connect Health Connect to see your steps and sleep next to your doses. Kairo only reads them and never shares them.</string>
+    <string name="feature_insights_connect_action">Connect</string>
+    <string name="feature_insights_install_body">Install Health Connect to see your steps and sleep next to your doses.</string>
+    <string name="feature_insights_install_action">Install</string>
+    <string name="feature_insights_disclaimer">Insights show what was recorded to help you notice patterns. They are not medical advice.</string>
+    <string name="feature_insights_rationale_title">How Kairo uses your health data</string>
+    <string name="feature_insights_rationale_body">Kairo reads your daily steps and sleep from Health Connect to show them next to the doses you took on the Insights screen.\n\nKairo only reads these two types of data. It never writes to Health Connect, never sends your data off this phone, and never shares it. You can disconnect at any time in Health Connect.</string>
+    <string name="feature_insights_rationale_close">Got it</string>
+</resources>
