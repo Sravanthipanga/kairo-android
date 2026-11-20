@@ -19,6 +19,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             add("implementation", libs.lib("androidx-lifecycle-viewmodel-compose"))
             add("implementation", libs.lib("androidx-navigation-compose"))
             add("implementation", libs.lib("androidx-hilt-navigation-compose"))
+
+            add("testImplementation", project(":core:testing"))
         }
     }
 }

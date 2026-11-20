@@ -4,4 +4,25 @@
     <string name="feature_medications_empty_title">No medications yet</string>
     <string name="feature_medications_empty_body">Add your first medication and Kairo will remind you at the right moment.</string>
     <string name="feature_medications_next_dose">Next dose at %1$s</string>
+
+    <string name="feature_medications_add_title">Add medication</string>
+    <string name="feature_medications_edit_title">Edit medication</string>
+    <string name="feature_medications_back">Back</string>
+    <string name="feature_medications_name_label">Name</string>
+    <string name="feature_medications_name_required">Enter the medication name</string>
+    <string name="feature_medications_dosage_label">Dosage</string>
+    <string name="feature_medications_dosage_placeholder">e.g. 500 mg or 1 tablet</string>
+    <string name="feature_medications_dosage_required">Enter the dosage</string>
+    <string name="feature_medications_instructions_label">Instructions (optional)</string>
+    <string name="feature_medications_instructions_placeholder">e.g. Take with food</string>
+    <string name="feature_medications_reminders_heading">Reminder times</string>
+    <string name="feature_medications_add_time">Add time</string>
+    <string name="feature_medications_remove_time">Remove %1$s</string>
+    <string name="feature_medications_times_required">Add at least one reminder time</string>
+    <string name="feature_medications_save">Save</string>
+    <string name="feature_medications_delete">Delete</string>
+    <string name="feature_medications_delete_title">Delete %1$s?</string>
+    <string name="feature_medications_delete_body">This removes the medication and its dose history.</string>
+    <string name="feature_medications_cancel">Cancel</string>
+    <string name="feature_medications_ok">OK</string>
 </resources>

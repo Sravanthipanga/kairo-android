@@ -29,9 +29,11 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
     implementation(projects.feature.medications)
+    implementation(projects.feature.today)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material.icons.extended)
 }

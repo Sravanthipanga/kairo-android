@@ -18,7 +18,8 @@ import java.time.Instant
             onDelete = ForeignKey.CASCADE,
         ),
     ],
-    indices = [Index("medicationId"), Index("scheduledAt")],
+    // One record per dose slot: re-marking a dose updates it instead of duplicating it.
+    indices = [Index(value = ["medicationId", "scheduledAt"], unique = true), Index("scheduledAt")],
 )
 data class DoseEventEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,

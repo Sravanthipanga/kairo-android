@@ -13,7 +13,7 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 ## Roadmap
 
 - [x] Project skeleton: multi-module Gradle build, Compose, Hilt, Room, CI
-- [ ] Medications: add and edit medications, schedules, dose log
+- [x] Medications: add and edit medications, schedules, today's doses, dose log
 - [ ] Reminders: exact alarms with "Taken" and "Snooze" notification actions
 - [ ] Adaptive timing: reminders that shift toward when you actually take your doses
 - [ ] Health Connect, home-screen widget, biometric lock
@@ -30,9 +30,12 @@ Kairo is split into modules so features stay independent and the domain logic is
 
 ```mermaid
 graph TD
+    app --> feature_today[":feature:today"]
     app --> feature_medications[":feature:medications"]
     app --> core_designsystem[":core:designsystem"]
     app --> core_data[":core:data"]
+    feature_today --> core_data
+    feature_today --> core_designsystem
     feature_medications --> core_data
     feature_medications --> core_designsystem
     core_data --> core_database[":core:database"]
@@ -42,12 +45,14 @@ graph TD
 
 | Module | Responsibility |
 |---|---|
-| `:app` | Application, activity, navigation host, Hilt entry point |
-| `:feature:medications` | Medication list screen and its `ViewModel` |
+| `:app` | Application, activity, bottom navigation, navigation host, Hilt entry point |
+| `:feature:today` | Today's doses: mark taken or skipped, undo, overdue state, daily progress |
+| `:feature:medications` | Medication list and the add/edit editor with validation and time pickers |
 | `:core:data` | Repositories. The local database is the single source of truth (offline-first) |
-| `:core:database` | Room database, DAOs, entities, exported schemas |
-| `:core:model` | Pure Kotlin domain models (`Medication`, `DoseEvent`) |
+| `:core:database` | Room database, DAOs, entities, exported schemas and auto-migrations |
+| `:core:model` | Pure Kotlin domain models and logic (`Medication`, `DoseEvent`, daily schedule) |
 | `:core:designsystem` | Kairo's Material 3 theme and colours |
+| `:core:testing` | Shared test doubles (fake repositories) and a coroutine test rule |
 | `build-logic` | Gradle convention plugins shared by every module |
 
 ## Build and run

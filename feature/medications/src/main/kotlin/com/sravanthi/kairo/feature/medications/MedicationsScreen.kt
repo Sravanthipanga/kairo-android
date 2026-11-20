@@ -14,11 +14,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Alarm
 import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
@@ -46,15 +48,21 @@ import java.time.format.FormatStyle
 
 @Composable
 internal fun MedicationsRoute(
+    onAddMedication: () -> Unit,
+    onMedicationClick: (Long) -> Unit,
     viewModel: MedicationsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    MedicationsScreen(uiState)
+    MedicationsScreen(uiState, onAddMedication, onMedicationClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun MedicationsScreen(uiState: MedicationsUiState) {
+internal fun MedicationsScreen(
+    uiState: MedicationsUiState,
+    onAddMedication: () -> Unit = {},
+    onMedicationClick: (Long) -> Unit = {},
+) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -62,6 +70,13 @@ internal fun MedicationsScreen(uiState: MedicationsUiState) {
             LargeTopAppBar(
                 title = { Text(stringResource(R.string.feature_medications_title)) },
                 scrollBehavior = scrollBehavior,
+            )
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = onAddMedication,
+                icon = { Icon(Icons.Filled.Add, contentDescription = null) },
+                text = { Text(stringResource(R.string.feature_medications_add_title)) },
             )
         },
     ) { padding ->
@@ -73,7 +88,7 @@ internal fun MedicationsScreen(uiState: MedicationsUiState) {
             when (uiState) {
                 MedicationsUiState.Loading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                 MedicationsUiState.Empty -> EmptyState(Modifier.align(Alignment.Center))
-                is MedicationsUiState.Success -> MedicationList(uiState.items)
+                is MedicationsUiState.Success -> MedicationList(uiState.items, onMedicationClick)
             }
         }
     }
@@ -107,20 +122,23 @@ private fun EmptyState(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun MedicationList(items: List<MedicationItem>) {
+private fun MedicationList(items: List<MedicationItem>, onMedicationClick: (Long) -> Unit) {
     LazyColumn(
-        contentPadding = PaddingValues(16.dp),
+        // Extra bottom padding keeps the last card clear of the floating button.
+        contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 96.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        items(items, key = { it.medication.id }) { item -> MedicationCard(item) }
+        items(items, key = { it.medication.id }) { item ->
+            MedicationCard(item, onClick = { onMedicationClick(item.medication.id) })
+        }
     }
 }
 
 private val timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
 
 @Composable
-private fun MedicationCard(item: MedicationItem) {
-    ElevatedCard(Modifier.fillMaxWidth()) {
+private fun MedicationCard(item: MedicationItem, onClick: () -> Unit) {
+    ElevatedCard(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(item.medication.name, style = MaterialTheme.typography.titleMedium)
             Text(

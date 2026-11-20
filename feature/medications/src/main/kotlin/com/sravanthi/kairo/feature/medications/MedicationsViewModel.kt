@@ -16,10 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MedicationsViewModel @Inject constructor(
     repository: MedicationRepository,
+    private val clock: Clock,
 ) : ViewModel() {
-
-    /** Overridable in tests so "next dose" is deterministic. */
-    internal var clock: Clock = Clock.systemDefaultZone()
 
     val uiState: StateFlow<MedicationsUiState> = repository.observeActiveMedications()
         .map { medications ->
