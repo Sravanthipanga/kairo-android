@@ -20,7 +20,8 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 - [x] Home-screen widget: next dose with a one-tap Taken button
 - [x] Insights: 7-day dose adherence, with steps and sleep from Health Connect
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
-- [ ] Tests, screenshots, Play Store release
+- [x] Release setup: signed builds in CI, privacy policy, Play Store listing
+- [ ] Screenshots and Play Store release
 
 ## How adaptive timing works
 
@@ -111,6 +112,10 @@ Requires JDK 17 and the Android SDK (compiles against API 36, targets API 35).
 ```
 
 Or open the project in Android Studio and run the `app` configuration.
+
+## Releasing
+
+Signed Play Store builds are produced by the **Release** workflow from GitHub secrets. The signing key never enters the repository. See [RELEASING.md](RELEASING.md), the [privacy policy](docs/privacy-policy.md) and the [Play Store listing](docs/play-store-listing.md).
 
 ## License
 
