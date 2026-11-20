@@ -32,6 +32,7 @@ dependencies {
     implementation(projects.feature.medications)
     implementation(projects.feature.today)
     implementation(projects.feature.settings)
+    implementation(projects.feature.widget)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

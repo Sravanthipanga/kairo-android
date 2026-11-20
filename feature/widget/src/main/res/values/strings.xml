@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_widget_name">Next dose</string>
+    <string name="feature_widget_description">Your next medication dose, with a one-tap Taken button.</string>
+    <string name="feature_widget_label">Kairo · Next dose</string>
+    <string name="feature_widget_empty">Add a medication in Kairo to see your next dose here.</string>
+    <string name="feature_widget_all_done">All done for today</string>
+    <string name="feature_widget_overdue">Overdue</string>
+    <string name="feature_widget_hidden">Open Kairo to see which medication.</string>
+    <string name="feature_widget_taken">Taken</string>
+    <plurals name="feature_widget_progress">
+        <item quantity="one">%1$d of %2$d dose taken</item>
+        <item quantity="other">%1$d of %2$d doses taken</item>
+    </plurals>
+</resources>

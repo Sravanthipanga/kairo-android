@@ -17,7 +17,8 @@ The name comes from the Greek *kairos*, meaning "the right moment". Kairo learns
 - [x] Reminders: exact alarms with "Taken" and "Snooze" notification actions
 - [x] Adaptive timing: suggests moving a reminder when you consistently take a dose at a different time
 - [x] App lock: fingerprint, face or screen lock, plus private notifications
-- [ ] Home-screen widget and Health Connect insights
+- [x] Home-screen widget: next dose with a one-tap Taken button
+- [ ] Health Connect insights
 - [ ] Sync backend exposing FHIR R4 `MedicationRequest`
 - [ ] Tests, screenshots, Play Store release
 
@@ -45,10 +46,11 @@ Medication history is health data, so Kairo treats it that way:
 - **App lock (optional).** Requires a fingerprint, face or the device screen lock. It re-locks after 30 seconds in the background, and the device PIN always works as a fallback.
 - **No peeking.** With app lock on, Kairo is hidden from screenshots and the recent-apps preview.
 - **Private notifications.** On a locked phone, reminders say "Time for your medication" without naming it.
+- **Private widget.** With app lock on, the home-screen widget shows only the time of the next dose.
 
 ## Tech stack
 
-Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · BiometricPrompt · DataStore · JUnit, Turbine · GitHub Actions
+Kotlin · Jetpack Compose (Material 3) · Coroutines & Flow · Hilt · Room · Navigation Compose · AlarmManager & notifications · BiometricPrompt · DataStore · Glance widgets · JUnit, Turbine · GitHub Actions
 
 ## Architecture
 
@@ -59,6 +61,9 @@ graph TD
     app --> feature_today[":feature:today"]
     app --> feature_medications[":feature:medications"]
     app --> feature_settings[":feature:settings"]
+    app --> feature_widget[":feature:widget"]
+    feature_widget --> core_reminders
+    feature_widget --> core_data
     feature_settings --> core_data
     app --> core_designsystem[":core:designsystem"]
     app --> core_data[":core:data"]
@@ -78,6 +83,7 @@ graph TD
 |---|---|
 | `:app` | Application, activity, bottom navigation, navigation host, app lock, Hilt entry point |
 | `:feature:today` | Today's doses: mark taken or skipped, undo, overdue state, daily progress, timing suggestions |
+| `:feature:widget` | Glance home-screen widget: next dose, overdue state, Taken button, daily progress |
 | `:feature:settings` | Settings: app lock switch and privacy information |
 | `:feature:medications` | Medication list and the add/edit editor with validation and time pickers |
 | `:core:data` | Repositories. The local database is the single source of truth (offline-first) |
