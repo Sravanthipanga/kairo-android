@@ -4,20 +4,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
-import com.sravanthi.kairo.feature.medications.navigation.MEDICATIONS_ROUTE
+import com.sravanthi.kairo.feature.medications.navigation.medicationEditorScreen
 import com.sravanthi.kairo.feature.medications.navigation.medicationsScreen
+import com.sravanthi.kairo.feature.medications.navigation.navigateToMedicationEditor
+import com.sravanthi.kairo.feature.today.navigation.TODAY_ROUTE
+import com.sravanthi.kairo.feature.today.navigation.todayScreen
 
 @Composable
 fun KairoNavHost(
+    navController: NavHostController,
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
 ) {
     NavHost(
         navController = navController,
-        startDestination = MEDICATIONS_ROUTE,
+        startDestination = TODAY_ROUTE,
         modifier = modifier,
     ) {
-        medicationsScreen()
+        todayScreen(onAddMedication = { navController.navigateToMedicationEditor() })
+        medicationsScreen(
+            onAddMedication = { navController.navigateToMedicationEditor() },
+            onMedicationClick = { id -> navController.navigateToMedicationEditor(id) },
+        )
+        medicationEditorScreen(onDone = { navController.popBackStack() })
     }
 }

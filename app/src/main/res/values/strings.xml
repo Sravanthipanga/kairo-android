@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kairo</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_medications">Medications</string>
 </resources>
